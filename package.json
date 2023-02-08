@@ -1,0 +1,23 @@
+{
+  "name": "social-networkapi-sinzostyle",
+  "version": "1.0.0",
+  "description": "NoSQL database API to help handle large amounts of unstructed data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrSinzo/Social-NetworkApi-Sinzostyle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrSinzo/Social-NetworkApi-Sinzostyle/issues"
+  },
+  "homepage": "https://github.com/MrSinzo/Social-NetworkApi-Sinzostyle#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
+  }
+}
