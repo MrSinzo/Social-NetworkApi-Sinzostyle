@@ -1,7 +1,7 @@
 const express = require('express'); // connection to express
 const db = require('./config/connection'); // connetion to the database
 const routes = require('./routes'); // connection to the routes
-
+// route connection not going here line 140?
 // const cwd = process.cwd(); // Current Working Directory? // play with this later
 
 const PORT = process.env.PORT || 3001;

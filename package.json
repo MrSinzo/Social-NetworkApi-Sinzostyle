@@ -4,6 +4,8 @@
   "description": "NoSQL database API to help handle large amounts of unstructed data",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
+    "seed": "node utils/seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
