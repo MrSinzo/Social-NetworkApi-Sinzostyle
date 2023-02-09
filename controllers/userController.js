@@ -5,8 +5,10 @@ const { User, Thought } = require("../models"); // dont need reaction beacuse it
 module.exports = {
   getUsers(req, res) {
     User.find() // finds all users in database
-      .then((users) => res.json(users)) // if promise comes back good, we name the incoming data object as users and respond from the server with a json file consisting of users
-      .catch((err) => res.status(500).json(err)); // if promise does not come back, we get error.
+      // if promise comes back good, we name the incoming data object as users and respond from the server with a json file consisting of users
+      .then((users) => res.json(users))
+      // if promise does not come back, we get error.
+      .catch((err) => res.status(500).json(err)) 
   },
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
@@ -26,7 +28,10 @@ module.exports = {
       });
   },
   createUser(req, res) {
-    User.create(req.body)
+    User.create({
+      username: req.body,
+      email: req.body
+    })
     .then((user) => res.json(user))
     .catch((err) => res.status(500).json(err));
   }
