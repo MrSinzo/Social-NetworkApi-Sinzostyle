@@ -1,6 +1,6 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const { getRandomName, getRandomThoughts, getRandomEmails  } = require('./data');
+const { getName, getThought, getEmail } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -9,26 +9,33 @@ connection.once('open', async () => {
 
   await User.deleteMany({});
   await Thought.deleteMany({});
+
   const users = [];
-
   for (let i = 0; i < 5; i++) {
-    const name = getRandomName();
-    const thought = getRandomThoughts();
-    const email = getRandomEmails();
-
+    const username = getName();
+    const email = getEmail();
     users.push({
-      name, 
-      thought,
+      username, 
       email
     });
   }
-
-
-
-  User.collection.insertMany(users);
-  // Thought.collection.insertMany()
+  const thoughts = []
+  for (let i = 0; i < 5; i++) {
+    const thoughtText = getThought();
+    const username = getName();
+    thoughts.push({
+      username,
+      thoughtText
+    });
+  }  
+console.log("test**************************************")
+  
+  // const userThoughts
+  // maybe need a create for thoughts?
+  await User.collection.insertMany(users);
+  await Thought.collection.insertMany(thoughts)
   console.table(users);
-  console.log(users.thoughts)
+  console.table(thoughts)
   console.info("Seeding Worked!!!!");
   process.exit(0)
 
