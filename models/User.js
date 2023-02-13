@@ -18,19 +18,19 @@ const userSchema = new Schema(
       unique: true,
       validate: {
         validator: () => Promise.resolve(),
-      }
+      },
     },
     // line 82 of Readme
     thoughts: [
-      { 
-        type: [Schema.Types.ObjectId], 
-        ref: "Thought" 
-      }
+      {
+        type: Schema.Types.ObjectId,
+        ref: "thoughts", // changed from uppsercase // changed from not plural to plural
+      },
     ],
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users", // changed from uppsercase
       },
     ], //line 84 of Readme
   },
@@ -38,12 +38,26 @@ const userSchema = new Schema(
     toJSON: {
       virtual: true,
     },
-    id:false
+    id: false,
   }
   // {typeKey: '$type'} // By adding this we are asking mongoose to use $type for interpreting the type of a key instead of the default keyword type //https://stackoverflow.com/questions/33846939/mongoose-schema-error-cast-to-string-failed-for-value-when-pushing-object-to
 );
 
+userSchema.virtual("friendCount").get(function () {
+  if (this.friends.length === null) {
+    // let count = this.friends.length;
+    let count = 0;
+    console.log(count);
+    return count;
+  } else {
+    return this.friends.length;
+  }
+});
+// .set(function () {
+//   this.set(`${count}`);
+// });
+
 const User = model("user", userSchema);
 // const User = model.apply("user", userSchema);
-
+// console.table([userSchema])
 module.exports = User;

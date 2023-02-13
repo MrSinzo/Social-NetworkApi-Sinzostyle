@@ -16,9 +16,11 @@ connection.once('open', async () => {
     const email = getEmail();
     users.push({
       username, 
-      email
+      email,
     });
   }
+
+  
   const thoughts = []
   for (let i = 0; i < 5; i++) {
     const thoughtText = getThought();

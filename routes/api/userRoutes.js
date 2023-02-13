@@ -5,10 +5,10 @@ const {
   createUser
 } = require('../../controllers/userController');
 
-// api user
+// api/user
 router.route('/').get(getUsers).post(createUser)
 
-// api/user/:usedId?
+// api/user/:userId?
 router.route("/:userId").get(getSingleUser);
 
 module.exports = router;

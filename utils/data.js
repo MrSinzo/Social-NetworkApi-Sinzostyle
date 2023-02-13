@@ -1,4 +1,5 @@
-const rNames = ["Aaran", "Smith", "Zen", "Xander", "Courtney", "Jason"]; // SEED DATA
+// const rNames = ["Aaran", "Smith", "Zen", "Xander", "Courtney", "Jason"]; // SEED DATA
+const rNames = ["Aaran", "Smith", "Zen", "Xander", "Courtney"]
 
 const rEmails = [
   "Aaran@Email.com",
@@ -6,7 +7,7 @@ const rEmails = [
   "Zen@Email.com",
   "Xander@Email.com",
   "Courtney@Email.com",
-  "Jason@Email.com"
+  // "Jason@Email.com"
 ]; // SEED DATA
 
 const rThoughts = [
@@ -23,13 +24,24 @@ const rThoughts = [
 // const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // these while loops will gather one piece of the array data, one at a time, in order, and returns them as results for our seed.js
-let ncount = 0
+let tcount = 0
+const getThought = () => {
+  // let i = 0;
+  while (tcount < rThoughts.length) {
+    console.log(rThoughts[tcount])
+    rThoughts[tcount];
+    tcount++;
+    return rThoughts[tcount];
+  }
+};
+
+let ncount = -1
 const getName = () => {
   // let i = 0;
   while (ncount < rNames.length) {
     console.log(rNames[ncount]);
     // rNames[ncount];
-    if (ncount === 5) {
+    if (ncount === 4) {
       ncount = 0;
       rNames[ncount]
       return rNames[ncount]
@@ -41,7 +53,7 @@ const getName = () => {
   }
 };
 
-let ecount = 0
+let ecount = -1
 const getEmail = () => {
   // let i = 0;
   while (ecount < rEmails.length) {
@@ -52,16 +64,11 @@ const getEmail = () => {
   }
 };
 
-let tcount = 0
-const getThought = () => {
-  // let i = 0;
-  while (tcount < rThoughts.length) {
-    console.log(rThoughts[tcount])
-    rThoughts[tcount];
-    tcount++;
-    return rThoughts[tcount];
-  }
-};
+
+
+// const getFriends = () => {
+
+// }
 
 
 module.exports = { getName, getThought, getEmail };

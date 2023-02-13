@@ -1,26 +1,25 @@
-// const mongoose = require("mongoose");
-const { Schema, model } = require("mongoose");
-const userSchema = require('./User');
-const reactionSchema = require('./Reaction');
-// const reactionSchema = new Schema({
-//   reactionId: {
-//     ofObjectId: [Schema.Types.ObjectId], // https://mongoosejs.com/docs/schematypes.html
-//   },
-//   reactionBody: {
-//     type: String,
-//     required: true,
-//     min_length: 1,
-//     max_length: 280,
-//   },
-//   userName: {
-//     type: String,
-//     required: true,
-//   },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now,
-//   },
-// });
+
+const { Schema, model, Types } = require("mongoose");
+// const { Types } = require("mongoose");
+const reactionSchema = new Schema({
+  reactionId: {
+    ofObjectId: [Schema.Types.ObjectId], // https://mongoosejs.com/docs/schematypes.html
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    min_length: 1,
+    max_length: 280,
+  },
+  userName: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
 const thoughtSchema = new Schema(
   {
@@ -40,7 +39,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactionCount: [{ reactionSchema }], // maybe? line 140 of readme
+    reactions: [reactionSchema]
   },
   {
     toJSON: {
@@ -50,6 +49,18 @@ const thoughtSchema = new Schema(
   },
 );
 
+thoughtSchema
+  .virtual("reactionCount")
+  .get(function () {
+    let count = this.reactions.length;
+    return count;
+  })
+  .set(function () {
+    this.set({ count });
+  });
+
+
 const Thought = model("thought", thoughtSchema);
 // const Thought = model.apply("thought", thoughtSchema);
 module.exports = Thought
+// module.exports = reactionSchema // if left uncommented, get error -> thought.deleteMany is not a function
