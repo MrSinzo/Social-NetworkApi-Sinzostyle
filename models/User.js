@@ -24,13 +24,13 @@ const userSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "thoughts", // changed from uppsercase // changed from not plural to plural
+        ref: "thought", // changed from uppsercase // changed from not plural to plural
       },
     ],
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "users", // changed from uppsercase
+        ref: "user", // changed from uppsercase
       },
     ], //line 84 of Readme
   },

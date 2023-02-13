@@ -23,7 +23,7 @@ const rThoughts = [
 
 // const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// these while loops will gather one piece of the array data, one at a time, in order, and returns them as results for our seed.js
+// these while loops will gather one piece of the array data, one at a time, in order, and will return results when the seed.js runs
 let tcount = 0
 const getThought = () => {
   // let i = 0;
