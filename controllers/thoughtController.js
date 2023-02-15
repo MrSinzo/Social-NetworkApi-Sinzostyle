@@ -83,16 +83,33 @@ module.exports = {
     );
   },
   newReaction(req, res) {
+    console.log(req.body)
+    // console.log(req.body.reactionBody)
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { reactions: req.body } }, 
       // putting reactions in array doesnt work [reactions]
 
       { new: true } // might need to be true if nothing is showing up
-    ).then((reaction) =>
-      reaction
-        ? res.json(reaction)
+    ).then((thought) =>
+    thought
+        ? res.json(thought)
         : res.status(404).json({ message: "Reaction failed to commit" })
     );
+  },
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionsId: req.params.reactionsId } } }, // may need to be _id or req.body 
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res
+              .status(404)
+              .json({ message: 'Reaction ID does not exist' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
   },
 };

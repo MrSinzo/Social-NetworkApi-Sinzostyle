@@ -1,10 +1,8 @@
 
-const { Schema, model, Types } = require("mongoose");
+const { Schema, model } = require("mongoose");
 // const { Types } = require("mongoose");
 const reactionSchema = new Schema({
-  reactionId: {
-    ofObjectId: [Schema.Types.ObjectId], // https://mongoosejs.com/docs/schematypes.html
-  },
+  
   reactionBody: {
     type: String,
     required: true,
