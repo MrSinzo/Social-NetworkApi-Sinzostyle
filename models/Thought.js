@@ -16,15 +16,15 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    // get: formattedDate,
+    get: (date)=> date.toLocaleDateString("en-US"),
   },
 },
-// {
-//   toJSON: {
-//     getters: true,
-//   },
-//   id: false,
-// }
+{
+  toJSON: {
+    getters: true,
+  },
+  id: false,
+}
 );
 
 const thoughtSchema = new Schema(
