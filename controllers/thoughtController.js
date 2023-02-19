@@ -2,6 +2,7 @@ const { User, Thought } = require("../models");
 const { ObjectId } = require("mongoose").Types;
 
 module.exports = {
+  // get all thoughts route
   getThoughts(req, res) {
     Thought.find() // finds all users in database
       // if promise comes back good, we name the incoming data object as users and respond from the server with a json file consisting of users
@@ -9,7 +10,7 @@ module.exports = {
       // if promise does not come back, we get error.
       .catch((err) => res.status(500).json(err));
   },
-
+// get single thought route
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .then(async (thought) =>
@@ -24,6 +25,7 @@ module.exports = {
         return res.status(500).json(err);
       });
   },
+  // create thought route
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
@@ -44,6 +46,7 @@ module.exports = {
         console.error(err);
       });
   },
+  // delete specific thought route by Id
   deleteThought(req, res) {
     Thought.findOneAndRemove({ _id: req.params.thoughtId })
       .then((thought) =>
@@ -67,6 +70,7 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+  // route to update an existing thought by id
   updateThought(req, res) {
     Thought.findOneAndUpdate(
       {
@@ -82,21 +86,20 @@ module.exports = {
         : res.json(newText)
     );
   },
+  // create reaction on a specific thought by ID(comments on thoughts)
   newReaction(req, res) {
-    console.log(req.body)
-    // console.log(req.body.reactionBody)
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { reactions: req.body } }, 
-      // putting reactions in array doesnt work [reactions]
 
-      { new: true } // might need to be true if nothing is showing up
+      { new: true }
     ).then((thought) =>
     thought
         ? res.json(thought)
         : res.status(404).json({ message: "Reaction failed to commit" })
     );
   },
+  // delete a specific reaction by id (comments on thoughts)
   deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
