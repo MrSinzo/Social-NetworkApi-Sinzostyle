@@ -10,13 +10,13 @@ SO THAT my website can handle large amounts of unstructured data
 
 ## Table of contents
 
-### What is it?
+### [What is it?](#whatisit)
 ### Why did I make this?
 ### How did I go about building this?
 ### Video Walkthrough
 ### Credits and Licenses
 
-## What is it?
+## What is it? <a name="whatisit"></a>
 This is a simple little backend API themed around the usage of a social network. 
 
 ## Why did I make this?
